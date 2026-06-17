@@ -11,6 +11,14 @@ class ProductFilterQueryParams:
     CATEGORY = "category"
     TAGS = "tags"
     PAGE = "page"
+    PER_PAGE = "per_page"
+    MATCH = "match"
+
+
+class ProductTagMatch:
+    ANY = "any"  # product has ANY selected tag (OR)
+    ALL = "all"  # product has ALL selected tags (AND)
+    DEFAULT = ANY
 
 
 class ProductSearch:
@@ -24,8 +32,11 @@ class ProductSearch:
     ALL_TOKENS_IN_NAME_BONUS = 5
     EXACT_NAME_BONUS = 25
 
-    # Pagination
-    PAGE_SIZE = 8
+    # Pagination -- page size adapts client-side to a full NxN grid (columns
+    # squared), clamped to this range; DEFAULT applies when per_page is absent.
+    DEFAULT_PAGE_SIZE = 9
+    MIN_PAGE_SIZE = 1
+    MAX_PAGE_SIZE = 36
 
     # Fuzzy "did you mean" similarity threshold (0..1)
     FUZZY_CUTOFF = 0.72
@@ -73,3 +84,6 @@ class ProductContextKeys:
     PAGE_OBJ = "page_obj"
     SUGGESTION = "suggestion"
     QUERYSTRING = "querystring"
+    PER_PAGE = "per_page"
+    MAX_PAGE_SIZE = "max_page_size"
+    TAG_MATCH = "tag_match"

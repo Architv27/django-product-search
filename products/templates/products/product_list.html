@@ -27,10 +27,42 @@
 {% block extra_js %}
 <script>
   (function () {
+    // Auto-submit filters on change.
     var form = document.querySelector(".filters");
-    if (!form) return;
-    form.querySelectorAll('select, input[type="checkbox"]').forEach(function (el) {
-      el.addEventListener("change", function () { form.submit(); });
+    if (form) {
+      form.querySelectorAll('select, input[type="checkbox"], input[type="radio"]').forEach(function (el) {
+        el.addEventListener("change", function () { form.submit(); });
+      });
+    }
+
+    // Adaptive page size: keep the grid a full square (columns x columns),
+    // floored at 4 so a single-column (mobile) layout isn't one-card-per-page.
+    var grid = document.querySelector(".grid");
+    if (!grid || !grid.querySelector(".card")) return;
+    var MAX = {{ max_page_size }};
+
+    function columnCount() {
+      var tracks = getComputedStyle(grid).gridTemplateColumns;
+      if (!tracks || tracks === "none") return 0;
+      return tracks.split(" ").filter(Boolean).length;
+    }
+
+    function syncPageSize() {
+      var cols = columnCount();
+      if (!cols) return;
+      var target = Math.min(Math.max(cols * cols, 4), MAX);
+      var url = new URL(window.location.href);
+      if (parseInt(url.searchParams.get("per_page"), 10) === target) return;
+      url.searchParams.set("per_page", target);
+      url.searchParams.delete("page"); // layout changed -> reset to first page
+      window.location.replace(url.toString());
+    }
+
+    syncPageSize();
+    var timer;
+    window.addEventListener("resize", function () {
+      clearTimeout(timer);
+      timer = setTimeout(syncPageSize, 300);
     });
   })();
 </script>

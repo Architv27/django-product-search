@@ -3,7 +3,7 @@
 <div class="did-you-mean">
   <span class="material-symbols-outlined">lightbulb</span>
   <span>Did you mean
-    <a class="did-you-mean__link" href="?q={{ suggestion|urlencode }}{% if selected_category_slug %}&category={{ selected_category_slug|urlencode }}{% endif %}{% for slug in selected_tag_slugs %}&tags={{ slug|urlencode }}{% endfor %}">{{ suggestion }}</a>?
+    <a class="did-you-mean__link" href="?q={{ suggestion|urlencode }}{% if selected_category_slug %}&category={{ selected_category_slug|urlencode }}{% endif %}{% for slug in selected_tag_slugs %}&tags={{ slug|urlencode }}{% endfor %}{% if tag_match == 'all' %}&match=all{% endif %}">{{ suggestion }}</a>?
   </span>
 </div>
 {% endif %}

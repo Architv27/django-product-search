@@ -32,15 +32,24 @@ class ProductQuerySet(models.QuerySet):
 
         return self.filter(category__slug=selected_category_slug)
 
-    def filter_by_any_tag_slug(self, selected_tag_slugs):
-        """Restrict to products having ANY of the selected tags (OR semantics).
+    def filter_by_tag_slugs(self, selected_tag_slugs, match_all=False):
+        """Restrict to products by tag.
 
+        ``match_all=False`` -> products with ANY of the selected tags (OR);
+        ``match_all=True``  -> products with ALL of the selected tags (AND).
         Blank entries are dropped; an empty list is a no-op. ``.distinct()``
         collapses the duplicate rows the many-to-many join can produce.
         """
         cleaned_slugs = [slug.strip() for slug in (selected_tag_slugs or []) if slug and slug.strip()]
         if not cleaned_slugs:
             return self
+
+        if match_all:
+            # AND: one join per tag, so a product must carry every selected tag.
+            queryset = self
+            for slug in cleaned_slugs:
+                queryset = queryset.filter(tags__slug=slug)
+            return queryset.distinct()
 
         return self.filter(tags__slug__in=cleaned_slugs).distinct()
 
@@ -49,16 +58,18 @@ class ProductQuerySet(models.QuerySet):
         search_tokens=None,
         selected_category_slug="",
         selected_tag_slugs=None,
+        match_all_tags=False,
     ):
         """Compose the three independent filters: search AND category AND tags.
 
         Each filter is a no-op when its input is empty, so any combination
         (including none) works -- the requirement's "combine search and filter".
+        ``match_all_tags`` switches tag matching between ANY (OR) and ALL (AND).
         """
         return (
             self.search(search_tokens)
             .filter_by_category_slug(selected_category_slug)
-            .filter_by_any_tag_slug(selected_tag_slugs)
+            .filter_by_tag_slugs(selected_tag_slugs, match_all=match_all_tags)
         )
 
 

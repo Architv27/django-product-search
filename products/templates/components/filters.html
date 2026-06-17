@@ -4,6 +4,9 @@
   <form class="md-card md-card--elevated filters" method="get" action="{% url 'products:product_list' %}">
     <h2 class="filters__title">Refine</h2>
 
+    <!-- keep the adaptive page size when filters are submitted -->
+    <input type="hidden" name="per_page" value="{{ per_page }}" />
+
     <!-- Search -> name="q" -->
     <div class="md-text-field">
       <span class="material-symbols-outlined md-text-field__icon">search</span>
@@ -24,10 +27,22 @@
       <span class="material-symbols-outlined md-select-field__arrow">expand_more</span>
     </div>
 
-    <!-- Tags -> repeated name="tags" -->
+    <!-- Tags -> repeated name="tags"; match mode -> name="match" -->
     <div class="filters__group">
-      <span class="filters__group-label">Tags</span>
-      <div class="md-chip-set">
+      <div class="filters__group-head">
+        <span class="filters__group-label">Tags</span>
+        <div class="md-segmented" role="group" aria-label="Match mode for tags">
+          <label class="md-segmented__option">
+            <input type="radio" name="match" value="any"{% if tag_match != 'all' %} checked{% endif %} />
+            <span>Any</span>
+          </label>
+          <label class="md-segmented__option">
+            <input type="radio" name="match" value="all"{% if tag_match == 'all' %} checked{% endif %} />
+            <span>All</span>
+          </label>
+        </div>
+      </div>
+      <div class="md-chip-set filters__tags">
         {% for tag in tags %}
         <label class="md-filter-chip">
           <input type="checkbox" name="tags" value="{{ tag.slug }}"{% if tag.slug in selected_tag_slugs %} checked{% endif %} />

@@ -6,6 +6,7 @@ from .constants import (
     ProductContextKeys,
     ProductFilterQueryParams,
     ProductSearch,
+    ProductTagMatch,
     ProductTemplatePaths,
 )
 from .models import Category, Product, Tag
@@ -26,6 +27,14 @@ def product_list(request):
         ProductFilterQueryParams.TAGS,
     )
 
+    tag_match = request.GET.get(
+        ProductFilterQueryParams.MATCH,
+        ProductTagMatch.DEFAULT,
+    )
+    if tag_match not in (ProductTagMatch.ANY, ProductTagMatch.ALL):
+        tag_match = ProductTagMatch.DEFAULT
+    match_all_tags = tag_match == ProductTagMatch.ALL
+
     search_tokens = search.tokenize(description_search_term)
 
     matched_products = (
@@ -36,6 +45,7 @@ def product_list(request):
             search_tokens=search_tokens,
             selected_category_slug=selected_category_slug,
             selected_tag_slugs=selected_tag_slugs,
+            match_all_tags=match_all_tags,
         )
     )
 
@@ -46,7 +56,8 @@ def product_list(request):
     else:
         ranked_products = matched_products
 
-    paginator = Paginator(ranked_products, ProductSearch.PAGE_SIZE)
+    page_size = _resolve_page_size(request)
+    paginator = Paginator(ranked_products, page_size)
     page_obj = paginator.get_page(request.GET.get(ProductFilterQueryParams.PAGE))
 
     # "Did you mean" only when a non-empty search returned no results.
@@ -64,6 +75,9 @@ def product_list(request):
         ProductContextKeys.SELECTED_TAG_SLUGS: selected_tag_slugs,
         ProductContextKeys.SUGGESTION: suggestion,
         ProductContextKeys.QUERYSTRING: _filters_querystring(request),
+        ProductContextKeys.PER_PAGE: page_size,
+        ProductContextKeys.MAX_PAGE_SIZE: ProductSearch.MAX_PAGE_SIZE,
+        ProductContextKeys.TAG_MATCH: tag_match,
     }
 
     return render(
@@ -78,3 +92,13 @@ def _filters_querystring(request):
     params = request.GET.copy()
     params.pop(ProductFilterQueryParams.PAGE, None)
     return params.urlencode()
+
+
+def _resolve_page_size(request):
+    """Page size from ?per_page (set client-side to keep a full NxN grid),
+    clamped to a safe range; falls back to the default when absent/invalid."""
+    try:
+        size = int(request.GET.get(ProductFilterQueryParams.PER_PAGE))
+    except (TypeError, ValueError):
+        return ProductSearch.DEFAULT_PAGE_SIZE
+    return max(ProductSearch.MIN_PAGE_SIZE, min(size, ProductSearch.MAX_PAGE_SIZE))
