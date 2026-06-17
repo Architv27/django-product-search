@@ -1,0 +1,52 @@
+{% load product_extras %}
+{% comment %}Filter sidebar (GET form) — MD filled fields + filter chips.{% endcomment %}
+<aside>
+  <form class="md-card md-card--elevated filters" method="get" action="{% url 'products:product_list' %}">
+    <h2 class="filters__title">Refine</h2>
+
+    <!-- Search -> name="q" -->
+    <div class="md-text-field">
+      <span class="material-symbols-outlined md-text-field__icon">search</span>
+      <input class="md-text-field__input" type="text" id="q" name="q" placeholder=" " value="{{ description_search_term }}" />
+      <label class="md-text-field__label" for="q">Search description</label>
+    </div>
+
+    <!-- Category -> name="category" -->
+    <div class="md-select-field">
+      <span class="material-symbols-outlined md-select-field__icon">category</span>
+      <select class="md-select-field__select" id="category" name="category">
+        <option value="">All categories</option>
+        {% for category in categories %}
+        <option value="{{ category.slug }}"{% if category.slug == selected_category_slug %} selected{% endif %}>{{ category.name }}</option>
+        {% endfor %}
+      </select>
+      <label class="md-select-field__label" for="category">Category</label>
+      <span class="material-symbols-outlined md-select-field__arrow">expand_more</span>
+    </div>
+
+    <!-- Tags -> repeated name="tags" -->
+    <div class="filters__group">
+      <span class="filters__group-label">Tags</span>
+      <div class="md-chip-set">
+        {% for tag in tags %}
+        <label class="md-filter-chip">
+          <input type="checkbox" name="tags" value="{{ tag.slug }}"{% if tag.slug in selected_tag_slugs %} checked{% endif %} />
+          <span class="md-filter-chip__label">
+            <span class="material-symbols-outlined md-filter-chip__icon">{{ tag|tag_icon }}</span>
+            <span class="material-symbols-outlined md-filter-chip__check">check</span>{{ tag.name }}
+          </span>
+        </label>
+        {% empty %}
+        <p class="muted">No tags yet.</p>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="filters__actions">
+      <button class="md-btn md-btn--filled" type="submit">
+        <span class="material-symbols-outlined">tune</span>Apply filters
+      </button>
+      <a class="md-btn md-btn--text" href="{% url 'products:product_list' %}">Clear</a>
+    </div>
+  </form>
+</aside>

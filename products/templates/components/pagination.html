@@ -1,0 +1,26 @@
+{% comment %}Pagination controls. Expects page_obj and querystring (filters minus page).{% endcomment %}
+{% if page_obj.paginator.num_pages > 1 %}
+<nav class="pagination" aria-label="Pagination">
+  {% if page_obj.has_previous %}
+  <a class="md-btn md-btn--text" href="?page={{ page_obj.previous_page_number }}&{{ querystring }}">
+    <span class="material-symbols-outlined">chevron_left</span>Prev
+  </a>
+  {% else %}
+  <span class="md-btn md-btn--text pagination__disabled">
+    <span class="material-symbols-outlined">chevron_left</span>Prev
+  </span>
+  {% endif %}
+
+  <span class="pagination__status">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+
+  {% if page_obj.has_next %}
+  <a class="md-btn md-btn--text" href="?page={{ page_obj.next_page_number }}&{{ querystring }}">
+    Next<span class="material-symbols-outlined">chevron_right</span>
+  </a>
+  {% else %}
+  <span class="md-btn md-btn--text pagination__disabled">
+    Next<span class="material-symbols-outlined">chevron_right</span>
+  </span>
+  {% endif %}
+</nav>
+{% endif %}

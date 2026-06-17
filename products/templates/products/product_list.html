@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Material Catalog · Remarcable{% endblock %}
+
+{% block content %}
+<header class="page-head">
+  <h1 class="page-head__title">Material Catalog</h1>
+  <p class="page-head__subtitle">
+    Search and filter procurement materials by description, category, and tags.
+  </p>
+</header>
+
+<div class="layout">
+  {% include "components/filters.html" %}
+
+  <section class="results">
+    {% include "components/active_filters.html" %}
+    {% include "components/did_you_mean.html" %}
+    <div class="results__scroll">
+      {% include "components/product_grid.html" %}
+    </div>
+    {% include "components/pagination.html" %}
+  </section>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  (function () {
+    var form = document.querySelector(".filters");
+    if (!form) return;
+    form.querySelectorAll('select, input[type="checkbox"]').forEach(function (el) {
+      el.addEventListener("change", function () { form.submit(); });
+    });
+  })();
+</script>
+{% endblock %}

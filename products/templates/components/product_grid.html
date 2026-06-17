@@ -1,0 +1,8 @@
+{% comment %}Results grid: one card per product, or empty state.{% endcomment %}
+<div class="grid">
+  {% for product in products %}
+  {% include "components/product_card.html" with product=product only %}
+  {% empty %}
+  {% include "components/empty_state.html" only %}
+  {% endfor %}
+</div>

@@ -1,0 +1,28 @@
+{% comment %}Results count + active-filter chips + clear-all.{% endcomment %}
+<div class="results-bar">
+  <p class="results-bar__count">{{ page_obj.paginator.count }} <span>result{{ page_obj.paginator.count|pluralize }}</span></p>
+
+  <div class="md-chip-set">
+    {% if description_search_term %}
+    {% include "components/chip.html" with icon="search" value=description_search_term only %}
+    {% endif %}
+    {% if selected_category_slug %}
+    {% for category in categories %}
+    {% if category.slug == selected_category_slug %}
+    {% include "components/chip.html" with icon="category" value=category.name only %}
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    {% for tag in tags %}
+    {% if tag.slug in selected_tag_slugs %}
+    {% include "components/chip.html" with icon="sell" value=tag.name only %}
+    {% endif %}
+    {% endfor %}
+  </div>
+
+  {% if description_search_term or selected_category_slug or selected_tag_slugs %}
+  <a class="md-btn md-btn--text results-bar__clear" href="{% url 'products:product_list' %}">
+    <span class="material-symbols-outlined">close</span>Clear all
+  </a>
+  {% endif %}
+</div>
