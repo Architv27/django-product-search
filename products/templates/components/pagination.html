@@ -3,11 +3,11 @@
 <nav class="pagination" aria-label="Pagination">
   {% if page_obj.has_previous %}
   <a class="md-btn md-btn--text" href="?page={{ page_obj.previous_page_number }}&{{ querystring }}">
-    <span class="material-symbols-outlined">chevron_left</span>Prev
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>Prev
   </a>
   {% else %}
   <span class="md-btn md-btn--text pagination__disabled">
-    <span class="material-symbols-outlined">chevron_left</span>Prev
+    <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>Prev
   </span>
   {% endif %}
 
@@ -15,11 +15,11 @@
 
   {% if page_obj.has_next %}
   <a class="md-btn md-btn--text" href="?page={{ page_obj.next_page_number }}&{{ querystring }}">
-    Next<span class="material-symbols-outlined">chevron_right</span>
+    Next<span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
   </a>
   {% else %}
   <span class="md-btn md-btn--text pagination__disabled">
-    Next<span class="material-symbols-outlined">chevron_right</span>
+    Next<span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
   </span>
   {% endif %}
 </nav>

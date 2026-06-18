@@ -3,7 +3,7 @@
 <article class="md-card md-card--elevated card">
   {% if product.category %}
   <span class="md-tonal-chip card__cat">
-    <span class="material-symbols-outlined md-tonal-chip__icon">category</span>{{ product.category.name }}
+    <span class="material-symbols-outlined md-tonal-chip__icon" aria-hidden="true">category</span>{{ product.category.name }}
   </span>
   {% endif %}
 
@@ -13,12 +13,12 @@
   {% if product.tags.all %}
   <div class="md-chip-set card__tags">
     {% for tag in product.tags.all %}
-    <span class="md-assist-chip"><span class="material-symbols-outlined">{{ tag|tag_icon }}</span>{{ tag.name }}</span>
+    <span class="md-assist-chip"><span class="material-symbols-outlined" aria-hidden="true">{{ tag|tag_icon }}</span>{{ tag.name }}</span>
     {% endfor %}
   </div>
   {% endif %}
 
   <p class="card__meta">
-    <span class="material-symbols-outlined">calendar_today</span>Added {{ product.created_at|date:"M j, Y" }}
+    <span class="material-symbols-outlined" aria-hidden="true">calendar_today</span>Added {{ product.created_at|date:"M j, Y" }}
   </p>
 </article>

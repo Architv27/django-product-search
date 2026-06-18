@@ -22,7 +22,7 @@
 
   {% if description_search_term or selected_category_slug or selected_tag_slugs %}
   <a class="md-btn md-btn--text results-bar__clear" href="{% url 'products:product_list' %}">
-    <span class="material-symbols-outlined">close</span>Clear all
+    <span class="material-symbols-outlined" aria-hidden="true">close</span>Clear all
   </a>
   {% endif %}
 </div>

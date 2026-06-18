@@ -2,21 +2,24 @@
 {% comment %}Filter sidebar (GET form) — MD filled fields + filter chips.{% endcomment %}
 <aside>
   <form class="md-card md-card--elevated filters" method="get" action="{% url 'products:product_list' %}">
-    <h2 class="filters__title">Refine</h2>
+    <div class="filters__header">
+      <span class="material-symbols-outlined filters__header-icon" aria-hidden="true">tune</span>
+      <h2 class="filters__title">Filters</h2>
+    </div>
 
     <!-- keep the adaptive page size when filters are submitted -->
     <input type="hidden" name="per_page" value="{{ per_page }}" />
 
     <!-- Search -> name="q" -->
     <div class="md-text-field">
-      <span class="material-symbols-outlined md-text-field__icon">search</span>
+      <span class="material-symbols-outlined md-text-field__icon" aria-hidden="true">search</span>
       <input class="md-text-field__input" type="text" id="q" name="q" placeholder=" " value="{{ description_search_term }}" />
       <label class="md-text-field__label" for="q">Search description</label>
     </div>
 
     <!-- Category -> name="category" -->
     <div class="md-select-field">
-      <span class="material-symbols-outlined md-select-field__icon">category</span>
+      <span class="material-symbols-outlined md-select-field__icon" aria-hidden="true">category</span>
       <select class="md-select-field__select" id="category" name="category">
         <option value="">All categories</option>
         {% for category in categories %}
@@ -24,13 +27,15 @@
         {% endfor %}
       </select>
       <label class="md-select-field__label" for="category">Category</label>
-      <span class="material-symbols-outlined md-select-field__arrow">expand_more</span>
+      <span class="material-symbols-outlined md-select-field__arrow" aria-hidden="true">expand_more</span>
     </div>
 
     <!-- Tags -> repeated name="tags"; match mode -> name="match" -->
     <div class="filters__group">
       <div class="filters__group-head">
-        <span class="filters__group-label">Tags</span>
+        <span class="filters__group-label">
+          Tags{% if selected_tag_slugs %}<span class="filters__count">{{ selected_tag_slugs|length }}</span>{% endif %}
+        </span>
         <div class="md-segmented" role="group" aria-label="Match mode for tags">
           <label class="md-segmented__option">
             <input type="radio" name="match" value="any"{% if tag_match != 'all' %} checked{% endif %} />
@@ -47,8 +52,8 @@
         <label class="md-filter-chip">
           <input type="checkbox" name="tags" value="{{ tag.slug }}"{% if tag.slug in selected_tag_slugs %} checked{% endif %} />
           <span class="md-filter-chip__label">
-            <span class="material-symbols-outlined md-filter-chip__icon">{{ tag|tag_icon }}</span>
-            <span class="material-symbols-outlined md-filter-chip__check">check</span>{{ tag.name }}
+            <span class="material-symbols-outlined md-filter-chip__icon" aria-hidden="true">{{ tag|tag_icon }}</span>
+            <span class="material-symbols-outlined md-filter-chip__check" aria-hidden="true">check</span>{{ tag.name }}
           </span>
         </label>
         {% empty %}
@@ -59,7 +64,7 @@
 
     <div class="filters__actions">
       <button class="md-btn md-btn--filled" type="submit">
-        <span class="material-symbols-outlined">tune</span>Apply filters
+        <span class="material-symbols-outlined" aria-hidden="true">tune</span>Apply filters
       </button>
       <a class="md-btn md-btn--text" href="{% url 'products:product_list' %}">Clear</a>
     </div>
