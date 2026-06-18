@@ -16,9 +16,10 @@ db.sqlite3-journal
 # Environment / secrets
 .env
 
-# Editor
+# Editor / tooling
 .vscode/
 .idea/
+.prettierignore
 
 # OS
 .DS_Store
