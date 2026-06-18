@@ -1,0 +1,444 @@
+[
+{
+  "model": "products.category",
+  "pk": 1,
+  "fields": {
+    "name": "Conduit & Raceway",
+    "slug": "conduit-raceway"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 2,
+  "fields": {
+    "name": "Wire & Cable",
+    "slug": "wire-cable"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 3,
+  "fields": {
+    "name": "Boxes & Enclosures",
+    "slug": "boxes-enclosures"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 4,
+  "fields": {
+    "name": "Circuit Protection",
+    "slug": "circuit-protection"
+  }
+},
+{
+  "model": "products.category",
+  "pk": 5,
+  "fields": {
+    "name": "Lighting & Fixtures",
+    "slug": "lighting-fixtures"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 1,
+  "fields": {
+    "name": "Copper",
+    "slug": "copper"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 2,
+  "fields": {
+    "name": "Aluminum",
+    "slug": "aluminum"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 3,
+  "fields": {
+    "name": "Indoor",
+    "slug": "indoor"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 4,
+  "fields": {
+    "name": "Outdoor",
+    "slug": "outdoor"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 5,
+  "fields": {
+    "name": "Weatherproof",
+    "slug": "weatherproof"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 6,
+  "fields": {
+    "name": "UL Listed",
+    "slug": "ul-listed"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 7,
+  "fields": {
+    "name": "Residential",
+    "slug": "residential"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 8,
+  "fields": {
+    "name": "Commercial",
+    "slug": "commercial"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 9,
+  "fields": {
+    "name": "Low Voltage",
+    "slug": "low-voltage"
+  }
+},
+{
+  "model": "products.tag",
+  "pk": 10,
+  "fields": {
+    "name": "In Stock",
+    "slug": "in-stock"
+  }
+},
+{
+  "model": "products.product",
+  "pk": 1,
+  "fields": {
+    "name": "1/2 in. EMT Conduit",
+    "description": "Galvanized steel electrical metallic tubing for protected indoor wiring runs.",
+    "category": 1,
+    "created_at": "2026-06-16T02:59:05.024Z",
+    "updated_at": "2026-06-16T02:59:05.025Z",
+    "tags": [
+      10,
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 2,
+  "fields": {
+    "name": "3/4 in. Rigid PVC Conduit",
+    "description": "Schedule 40 PVC conduit for underground and outdoor feeder protection.",
+    "category": 1,
+    "created_at": "2026-06-16T02:59:05.028Z",
+    "updated_at": "2026-06-16T02:59:05.041Z",
+    "tags": [
+      10,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 3,
+  "fields": {
+    "name": "1 in. Liquidtight Flexible Conduit",
+    "description": "Liquid-tight flexible metal conduit for motor and equipment connections.",
+    "category": 1,
+    "created_at": "2026-06-16T02:59:05.041Z",
+    "updated_at": "2026-06-16T02:59:05.041Z",
+    "tags": [
+      8,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 4,
+  "fields": {
+    "name": "4 in. Ventilated Cable Tray",
+    "description": "Ventilated steel cable tray for organized commercial cable management.",
+    "category": 1,
+    "created_at": "2026-06-16T02:59:05.056Z",
+    "updated_at": "2026-06-16T02:59:05.056Z",
+    "tags": [
+      8,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 5,
+  "fields": {
+    "name": "12 AWG THHN Copper Wire",
+    "description": "Stranded copper building wire rated 600V for general-purpose branch circuits.",
+    "category": 2,
+    "created_at": "2026-06-16T02:59:05.072Z",
+    "updated_at": "2026-06-16T02:59:05.072Z",
+    "tags": [
+      1,
+      10,
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 6,
+  "fields": {
+    "name": "10 AWG Aluminum XHHW Wire",
+    "description": "Aluminum conductor for cost-effective feeder and service-entrance runs.",
+    "category": 2,
+    "created_at": "2026-06-16T02:59:05.088Z",
+    "updated_at": "2026-06-16T02:59:05.088Z",
+    "tags": [
+      2,
+      8,
+      4
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 7,
+  "fields": {
+    "name": "14/2 NM-B Romex Cable",
+    "description": "Non-metallic sheathed copper cable for residential branch circuits.",
+    "category": 2,
+    "created_at": "2026-06-16T02:59:05.096Z",
+    "updated_at": "2026-06-16T02:59:05.104Z",
+    "tags": [
+      1,
+      10,
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 8,
+  "fields": {
+    "name": "CAT6 Network Cable",
+    "description": "Unshielded twisted-pair cable for low-voltage data and network installations.",
+    "category": 2,
+    "created_at": "2026-06-16T02:59:05.104Z",
+    "updated_at": "2026-06-16T02:59:05.104Z",
+    "tags": [
+      8,
+      3,
+      9
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 9,
+  "fields": {
+    "name": "Single-Gang Metal Switch Box",
+    "description": "Steel device box for mounting switches and receptacles in framed walls.",
+    "category": 3,
+    "created_at": "2026-06-16T02:59:05.124Z",
+    "updated_at": "2026-06-16T02:59:05.129Z",
+    "tags": [
+      3,
+      7,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 10,
+  "fields": {
+    "name": "Weatherproof Outlet Box",
+    "description": "Die-cast aluminum box with gasketed cover for exterior receptacles.",
+    "category": 3,
+    "created_at": "2026-06-16T02:59:05.136Z",
+    "updated_at": "2026-06-16T02:59:05.139Z",
+    "tags": [
+      10,
+      4,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 11,
+  "fields": {
+    "name": "NEMA 3R Junction Enclosure",
+    "description": "Rainproof steel enclosure for outdoor electrical junctions and splices.",
+    "category": 3,
+    "created_at": "2026-06-16T02:59:05.148Z",
+    "updated_at": "2026-06-16T02:59:05.154Z",
+    "tags": [
+      8,
+      4,
+      6,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 12,
+  "fields": {
+    "name": "4 in. Square Ceiling Box",
+    "description": "Metal ceiling box rated for fixture support up to 50 lbs.",
+    "category": 3,
+    "created_at": "2026-06-16T02:59:05.162Z",
+    "updated_at": "2026-06-16T02:59:05.169Z",
+    "tags": [
+      3,
+      7
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 13,
+  "fields": {
+    "name": "20A Single-Pole Breaker",
+    "description": "Thermal-magnetic circuit breaker for branch-circuit overcurrent protection.",
+    "category": 4,
+    "created_at": "2026-06-16T02:59:05.172Z",
+    "updated_at": "2026-06-16T02:59:05.178Z",
+    "tags": [
+      10,
+      7,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 14,
+  "fields": {
+    "name": "100A Main Load Center",
+    "description": "Indoor main-breaker panel with 20 circuit spaces for residential service.",
+    "category": 4,
+    "created_at": "2026-06-16T02:59:05.190Z",
+    "updated_at": "2026-06-16T02:59:05.190Z",
+    "tags": [
+      3,
+      7,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 15,
+  "fields": {
+    "name": "30A GFCI Breaker",
+    "description": "Ground-fault circuit interrupter breaker for wet-location safety.",
+    "category": 4,
+    "created_at": "2026-06-16T02:59:05.202Z",
+    "updated_at": "2026-06-16T02:59:05.209Z",
+    "tags": [
+      8,
+      6,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 16,
+  "fields": {
+    "name": "Whole-House Surge Protector",
+    "description": "Type 2 surge protective device that shields panels from voltage transients.",
+    "category": 4,
+    "created_at": "2026-06-16T02:59:05.214Z",
+    "updated_at": "2026-06-16T02:59:05.221Z",
+    "tags": [
+      10,
+      7,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 17,
+  "fields": {
+    "name": "4 ft. LED Wraparound Fixture",
+    "description": "Energy-efficient LED fixture for shops, garages, and utility spaces.",
+    "category": 5,
+    "created_at": "2026-06-16T02:59:05.233Z",
+    "updated_at": "2026-06-16T02:59:05.233Z",
+    "tags": [
+      8,
+      10,
+      3,
+      6
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 18,
+  "fields": {
+    "name": "150W LED High Bay Light",
+    "description": "High-output LED fixture for warehouses and high-ceiling commercial spaces.",
+    "category": 5,
+    "created_at": "2026-06-16T02:59:05.245Z",
+    "updated_at": "2026-06-16T02:59:05.245Z",
+    "tags": [
+      8,
+      3
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 19,
+  "fields": {
+    "name": "Weatherproof LED Wall Pack",
+    "description": "Outdoor security wall pack with dusk-to-dawn photocell control.",
+    "category": 5,
+    "created_at": "2026-06-16T02:59:05.257Z",
+    "updated_at": "2026-06-16T02:59:05.260Z",
+    "tags": [
+      8,
+      4,
+      6,
+      5
+    ]
+  }
+},
+{
+  "model": "products.product",
+  "pk": 20,
+  "fields": {
+    "name": "6 in. Recessed LED Downlight",
+    "description": "Dimmable recessed downlight for residential ceilings and hallways.",
+    "category": 5,
+    "created_at": "2026-06-16T02:59:05.269Z",
+    "updated_at": "2026-06-16T02:59:05.275Z",
+    "tags": [
+      10,
+      3,
+      7
+    ]
+  }
+}
+]
